@@ -2,6 +2,8 @@ create database zepto_project;
 show databases;
 use  zepto_project;
 
+-- create table as per your data so i have created here then next
+
 -- first 10 data from table
 select* from zepto
 limit 10;
@@ -22,7 +24,8 @@ alter table zepto
 change column id sku_id int primary key;
 
 -- product names present multiple times
-select name,count(sku_id) as no_of_duplicates from zepto
+select name,count(sku_id) as no_of_duplicates 
+from zepto
 group by name
 having no_of_duplicates >  1
 order by no_of_duplicates desc;
@@ -45,25 +48,29 @@ update zepto
 set mrp=mrp/100,
 discountedSellingPrice = discountedSellingPrice/100 ; 
 
-select mrp,discountPercent,discountedSellingPrice from zepto;
+select mrp,discountPercent,discountedSellingPrice 
+from zepto;
 
 
 -- business questions from data 
 
 -- Q1 top 10 best discountpercent products from zepto
 
-select distinct name,mrp,discountpercent from zepto 
+select distinct name,mrp,discountpercent 
+from zepto 
 order by discountpercent desc
 limit 10;
 
 -- Q2 what are the productshave high mrp but outofstack
-select distinct name,mrp from zepto 
+select distinct name,mrp 
+from zepto 
 where outOfStock = 'TRUE' and mrp >300
 order by mrp desc;
 
 -- Q3 calculate estimated revenue of each category
 
-select category,sum(discountedSellingPrice*availableQuantity)as total_revenue from zepto 
+select category,sum(discountedSellingPrice*availableQuantity)as total_revenue 
+from zepto 
 group by category;
 
 -- Q4 find all the products where mrp greaterthan 500 and discount lessthan 10
@@ -75,7 +82,8 @@ order by mrp desc,discountPercent desc;
 
 -- Q5 find the top 5 category offering highest  avg discount percentage
 
-select category,round(avg(discountPercent),2) as discount from zepto
+select category,round(avg(discountPercent),2) as discount 
+from zepto
 group by category
 order by discount desc
 limit 5;
@@ -100,7 +108,8 @@ from zepto
 order by weight_category;
 
 -- Q8 what is the total inventory weight per category
-select category,sum(weightingms*availablequantity) as total_weight from zepto
+select category,sum(weightingms*availablequantity) as total_weight 
+from zepto
 group by category;
     
 
