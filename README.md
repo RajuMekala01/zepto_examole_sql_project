@@ -1,4 +1,4 @@
-# zepto_examole_sql_project
+# zepto_example_sql_project
 
 ### Project Workflow
 * 1. Database Setup
